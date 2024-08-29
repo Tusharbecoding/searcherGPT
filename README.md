@@ -141,3 +141,5 @@ This project focuses on enhancing the chat functionality by adding features such
      - Special characters and spaces.
 
 **Methods Used:** React Hooks (`useState`, `useEffect`) for managing search input and filtering logic.
+
+[Click here to view the video](https://github.com/Tusharbecoding/searcherGPT/blob/main/public/searching.mov)
