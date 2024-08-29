@@ -45,8 +45,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         </div>
         {role === "user" && (
           <Button
-            auto
-            flat
+            autoFocus
             size="sm"
             onClick={onEdit}
             className="opacity-0 group-hover:opacity-100 transition-opacity absolute top-1 right-2"

@@ -1,22 +1,22 @@
-import { Button, TextAreaProps, Textarea } from '@nextui-org/react'
-import clsx from 'clsx'
-import React, { memo, useState } from 'react'
-import { SendIcon } from '../icons/SendIcon'
+import { Button, TextAreaProps, Textarea } from "@nextui-org/react";
+import clsx from "clsx";
+import React, { memo, useState } from "react";
+import { SendIcon } from "../icons/SendIcon";
 
 export type MessageBarProps = Omit<
   React.HTMLProps<HTMLDivElement>,
-  'onSubmit'
+  "onSubmit"
 > & {
-  hide?: boolean
-  disabled?: boolean
-  loading?: boolean
-  prompt?: string
-  onSubmit?: (prompt: string) => void
-  onPromptChange?: (prompt: string) => void
-  editing?: boolean
-  onCancelEdit?: () => void
-  textareaProps?: TextAreaProps
-}
+  hide?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  prompt?: string;
+  onSubmit?: (prompt: string) => void;
+  onPromptChange?: (prompt: string) => void;
+  editing?: boolean;
+  onCancelEdit?: () => void;
+  textareaProps?: TextAreaProps;
+};
 
 export const MessageBar: React.FC<MessageBarProps> = memo(
   ({
@@ -32,40 +32,40 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
     ...props
   }) => {
     // Internal state for prompt
-    const [prompt, setPrompt] = useState(externalPrompt || '')
+    const [prompt, setPrompt] = useState(externalPrompt || "");
 
     // Update the prompt when the external prompt changes
     React.useEffect(() => {
-      setPrompt(externalPrompt || '')
-    }, [externalPrompt])
+      setPrompt(externalPrompt || "");
+    }, [externalPrompt]);
 
     const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
+      e.preventDefault();
       if (prompt && onSubmit) {
-        onSubmit(prompt)
+        onSubmit(prompt);
       }
-    }
+    };
 
     const handlePromptChange = (value: string) => {
-      setPrompt(value)
-      onPromptChange?.(value)
-    }
+      setPrompt(value);
+      onPromptChange?.(value);
+    };
 
     const handleCancelEdit = () => {
-      setPrompt('') // Clear the prompt
-      onCancelEdit?.()
-    }
+      setPrompt(""); // Clear the prompt
+      onCancelEdit?.();
+    };
 
     return (
       <div
         {...props}
         className={clsx(
-          'pb-2',
-          'transition',
-          'translate-y-0',
-          'opacity-100',
-          hide && ['opacity-0', 'invisible', 'translate-y-full'],
-          props.className,
+          "pb-2",
+          "transition",
+          "translate-y-0",
+          "opacity-100",
+          hide && ["opacity-0", "invisible", "translate-y-full"],
+          props.className
         )}
       >
         <form className="flex flex-row gap-2 items-end" onSubmit={onFormSubmit}>
@@ -77,7 +77,7 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
             variant="bordered"
             placeholder="Type a message..."
             classNames={{
-              inputWrapper: 'border-gray-100 hover:border-gray-100',
+              inputWrapper: "border-gray-100 hover:border-gray-100",
             }}
             onValueChange={handlePromptChange}
             isDisabled={disabled || loading}
@@ -93,7 +93,7 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
             isDisabled={
               disabled ||
               loading ||
-              prompt.replaceAll('\n', '').trim().length === 0
+              prompt.replaceAll("\n", "").trim().length === 0
             }
             isLoading={loading}
           >
@@ -101,8 +101,7 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
           </Button>
           {editing && (
             <Button
-              auto
-              flat
+              autoFocus
               size="lg"
               color="danger"
               onClick={handleCancelEdit}
@@ -112,6 +111,6 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
           )}
         </form>
       </div>
-    )
-  },
-)
+    );
+  }
+);
