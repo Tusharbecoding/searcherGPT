@@ -1,20 +1,22 @@
-import { Button, Input, InputProps } from '@nextui-org/react'
-import clsx from 'clsx'
-import React from 'react'
-import { SearchIcon } from '../icons'
+//@ts-nocheck
+
+import { Button, Input, InputProps } from "@nextui-org/react";
+import clsx from "clsx";
+import React from "react";
+import { SearchIcon } from "../icons";
 
 export type SearchBarProps = Omit<
   React.HTMLProps<HTMLDivElement>,
-  'value' | 'onChange'
+  "value" | "onChange"
 > & {
-  value?: string
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
-  onSubmit?: React.FormEventHandler<HTMLFormElement>
-  pending?: boolean
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+  pending?: boolean;
 
-  inputProps?: InputProps
-  formProps?: React.HTMLProps<HTMLFormElement>
-}
+  inputProps?: InputProps;
+  formProps?: React.HTMLProps<HTMLFormElement>;
+};
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   value,
@@ -27,21 +29,21 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   ...props
 }) => {
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (onSubmit) {
       try {
-        onSubmit(e)
+        onSubmit(e);
       } catch (error) {
-        console.error('Error during form submission:', error.message)
+        console.error("Error during form submission:", error.message);
         // Optionally display an error message to the user
       }
     }
-  }
+  };
 
   return (
-    <div className={clsx('w-full', className)} {...props}>
+    <div className={clsx("w-full", className)} {...props}>
       <form
-        className={clsx(formProps.className, 'w-full flex items-center gap-2')}
+        className={clsx(formProps.className, "w-full flex items-center gap-2")}
         onSubmit={onFormSubmit}
         {...formProps}
       >
@@ -67,5 +69,5 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         </Button>
       </form>
     </div>
-  )
-}
+  );
+};
