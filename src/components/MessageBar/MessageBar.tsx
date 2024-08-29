@@ -31,10 +31,8 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
     textareaProps = {},
     ...props
   }) => {
-    // Internal state for prompt
     const [prompt, setPrompt] = useState(externalPrompt || "");
 
-    // Update the prompt when the external prompt changes
     React.useEffect(() => {
       setPrompt(externalPrompt || "");
     }, [externalPrompt]);
@@ -52,7 +50,7 @@ export const MessageBar: React.FC<MessageBarProps> = memo(
     };
 
     const handleCancelEdit = () => {
-      setPrompt(""); // Clear the prompt
+      setPrompt("");
       onCancelEdit?.();
     };
 

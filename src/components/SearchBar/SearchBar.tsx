@@ -35,7 +35,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         onSubmit(e);
       } catch (error) {
         console.error("Error during form submission:", error.message);
-        // Optionally display an error message to the user
       }
     }
   };

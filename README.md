@@ -16,25 +16,128 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Project Enhancement: Chat and Search Functionalities
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Overview
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This project focuses on enhancing the chat functionality by adding features such as message editing and local storage for chat sessions, as well as improving search functionalities with filter buttons for better user experience.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## Task - Enhance Chat Functionality
 
-To learn more about Next.js, take a look at the following resources:
+### Part 1 - Edit Messages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Objective:** Allow users to edit their messages after sending.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Message Structure Analysis:**
 
-## Deploy on Vercel
+   - Identified how messages are currently structured and rendered.
+   - Determined whether messages are stored in a state management system (like Redux or React's state) or manipulated directly in the DOM.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **UI Changes for Editing:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   - Decided how the UI should change when a user clicks "edit" on a message.
+   - Implemented a feature where the message text becomes an editable input field upon clicking the "edit" button similar to ChatGpt
+
+3. **Toggle Editable State:**
+
+   - Implemented functionality to toggle a message to an editable state when a user clicks to edit.
+
+4. **Error Handling:**
+
+   - Implemented error handling and fallback mechanisms.
+
+5. **Update Message in State:**
+
+   - On saving the edited message, updated the message in the chat state.
+   - Ensured that the chat history and current chat session remain consistent.
+
+6. **Testing:**
+   - Tested the editing functionality across different scenarios:
+     - Editing immediately after sending.
+     - Editing after some time.
+     - Performing multiple edits.
+   - Ensured responsiveness and compatibility across different screen sizes.
+
+**Methods Used:** React’s `useState` or `useReducer` for local state management.
+
+---
+
+### Part 2 - Local Storage
+
+**Objective:** Store chat sessions in local storage to maintain chat history across sessions.
+
+1. **Design Storage Structure:**
+
+   - Decided how chat sessions will be stored in local storage.
+   - Created a structure using an array of chat session objects, where each session contains metadata (like timestamps and participants) and a list of messages.
+
+2. **Local Storage Functions:**
+
+   - Set up functions to save, retrieve, and delete chat sessions from local storage using `localStorage.setItem()` and `localStorage.getItem()` methods.
+   - Added checks to handle scenarios where local storage is unavailable or full.
+
+3. **Error Handling:**
+
+   - Implemented error handling and fallback mechanisms.
+   - For example, if local storage fails, the application alerts the user or stores data temporarily in memory.
+
+4. **Testing:**
+   - Tested local storage functionality across different browsers and devices to ensure consistent behavior.
+
+**Methods Used:** `localStorage`, `JSON.stringify`, and `JSON.parse` for converting data to and from strings.
+
+---
+
+## Task - Enhance Search Functionality
+
+### Part 1 - Filters
+
+**Objective:** Improve search functionality with the addition of filters to allow users to easily narrow down their search results.
+
+1. **UI Design for Filters:**
+
+   - Designed a user interface for filters, with icons or buttons for each file type (e.g., Docs, PDF, Images, etc.).
+
+2. **Filter Logic:**
+
+   - Created logic to update the search results when a user selects a filter.
+   - Implemented client-side filtering to adjust the displayed results based on the selected file type.
+
+3. **Error Handling:**
+
+   - Added error handling and appropriate error messages to inform users of any issues.
+
+4. **Testing:**
+   - Tested the filter functionality to ensure it correctly updates the search results based on the selected file types.
+
+**Methods Used:** UI components like buttons and labels, React Hooks for state management, and conditional rendering.
+
+---
+
+## Extra/Bonus Fix
+
+### Enhanced Search Functionality with Search Bar
+
+**Objective:** Improve search functionality to filter file names based on user input in the search bar.
+
+1. **Search Bar Integration:**
+
+   - Added a search bar component to the UI to allow users to input text for searching file names.
+
+2. **Dynamic Filtering:**
+
+   - Implemented logic to dynamically filter and display file names that contain the search query. This involves updating the list of displayed files in real-time as the user types in the search bar.
+
+3. **Case-Insensitive Search:**
+
+   - Ensured that the search functionality is case-insensitive, allowing for a more user-friendly search experience.
+
+4. **Testing:**
+   - Tested the search functionality across various scenarios to ensure accurate and responsive filtering:
+     - Partial matches.
+     - Different casing.
+     - Special characters and spaces.
+
+**Methods Used:** React Hooks (`useState`, `useEffect`) for managing search input and filtering logic.

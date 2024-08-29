@@ -65,7 +65,6 @@ export const Search: React.FC<SearchProps> = ({
   useEffect(() => {
     if (error) {
       console.error("An error occurred:", error);
-      // Optionally, you could show a user-friendly message or log the error to a service
     }
   }, [error]);
 

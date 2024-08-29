@@ -7,7 +7,7 @@ export type ChatMessageProps = Omit<React.HTMLProps<HTMLDivElement>, "role"> & {
   message: string;
   role: "user" | "assistant";
   disableAnimation?: boolean;
-  onEdit?: () => void; // New prop to handle the edit button click
+  onEdit?: () => void;
 };
 
 export const ChatMessage: React.FC<ChatMessageProps> = ({
@@ -23,10 +23,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
   });
 
   return (
-    <div
-      {...props}
-      className={clsx("relative group", props.className)} // Added 'group' class here
-    >
+    <div {...props} className={clsx("relative group", props.className)}>
       <div className="flex flex-row gap-4 items-start">
         <Avatar
           className="flex-shrink-0"
